@@ -14,5 +14,11 @@ jobs:
     steps:
       - name: "print"
         run: |
+          PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
           echo ${{ github.run_id }}
+          echo $PR_NUMBER
+      - name: "curl"
+        uses: wei/curl@v1
+        with:
+          args: -X POST https://httpbin.org/post
 
