@@ -1,0 +1,29 @@
+name: "get run id"
+
+on:
+  push:
+    branches:
+      - "*"
+
+  pull_request:
+
+jobs:
+  get_run_id:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: "collect variables"
+        id: vars
+        run: |
+          PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
+          echo $GITHUB_REF
+          echo ${{ github.run_id }}
+          echo $PR_NUMBER
+          echo "pull_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "run_id=${{ github.run_id }}" >> $GITHUB_OUTPUT
+
+      - name: "curl"
+        uses: wei/curl@v1
+        with:
+          args: -X GET http://s.yann-p.fr:1242/collect_artifact_metadata/Yann-P/ipython/${{ steps.vars.outputs.pull_number }}/${{ steps.vars.outputs.run_id }}
+
