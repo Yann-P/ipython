@@ -16,6 +16,7 @@ jobs:
         id: vars
         run: |
           PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
+          echo $GITHUB_REF
           echo ${{ github.run_id }}
           echo $PR_NUMBER
           echo "pull_number=$PR_NUMBER" >> $GITHUB_OUTPUT
