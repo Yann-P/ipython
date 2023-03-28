@@ -24,5 +24,5 @@ jobs:
       - name: "curl"
         uses: wei/curl@v1
         with:
-          args: -X GET http://s.yann-p.fr:1242/collect_artifact_metadata/Yann-P/ipython/${{ steps.vars.outputs.pull_number }}/{{ steps.vars.outputs.run_id }}
+          args: -X GET http://s.yann-p.fr:1242/collect_artifact_metadata/Yann-P/ipython/${{ steps.vars.outputs.pull_number }}/${{ steps.vars.outputs.run_id }}
 
