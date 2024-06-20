@@ -37,6 +37,8 @@ from logging import error
 # This is used as the pattern for calls to split_user_input.
 shell_line_split = re.compile(r'^(\s*)()(\S+)(.*$)')
 
+print('abc')
+
 def default_aliases():
     """Return list of shell aliases to auto-define.
     """
